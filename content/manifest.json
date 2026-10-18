@@ -1,0 +1,26 @@
+{
+  "title": "Очевидно",
+  "subtitle": "Материалы для подготовки к контрольным, коллоквиумам и экзаменам",
+  "types": {
+    "colloquium": "Коллоквиум",
+    "exam": "Экзаменационные вопросы",
+    "lectures": "Разбор лекций",
+    "other": "Прочее"
+  },
+  "subjects": [
+    {
+      "id": "matan",
+      "name": "Математический анализ",
+      "description": "Коллоквиум 1 семестр",
+      "materials": [
+        {
+          "id": "matan-kolloquium-1",
+          "title": "Коллоквиум 1 семестр",
+          "type": "colloquium",
+          "file": "matan/kolok1.md"
+        }
+      ]
+    }
+    
+  ]
+}
