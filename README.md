@@ -68,8 +68,8 @@ npm run preview
 ## Деплой на GitHub Pages
 
 1. Запушьте репозиторий на GitHub (ветка `main`).
-2. В настройках репозитория: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
-3. После пуша в `main` workflow сам соберёт и опубликует сайт. Каждый следующий пуш обновляет сайт.
+2. Workflow сам включает GitHub Pages при первом запуске (`enablement: true`). Если шаг `configure-pages` всё же упал с ошибкой `Not Found` — включите вручную: **Settings → Pages → Build and deployment → Source: GitHub Actions**, и перезапустите workflow.
+3. Каждый пуш в `main` обновляет сайт автоматически.
 
 Дополнительная настройка не нужна: `base: './'` в `vite.config.js` уже учитывает любой путь репозитория.
 
