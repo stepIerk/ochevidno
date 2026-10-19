@@ -17,7 +17,8 @@
           "id": "matan-kolloquium-1",
           "title": "Коллоквиум 1 семестр",
           "type": "colloquium",
-          "file": "matan/kolok1.md"
+          "file": "matan/kolok1.md",
+          "cards": "matan/kolok1.cards.md"
         }
       ]
     }

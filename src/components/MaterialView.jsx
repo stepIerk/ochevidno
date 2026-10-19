@@ -1,10 +1,10 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import Mark from 'mark.js'
-import { ChevronDown, ChevronLeft, ChevronRight, ChevronUp, Clock, Hash, ListTree, TextSearch, X } from 'lucide-react'
+import { ChevronDown, ChevronLeft, ChevronRight, ChevronUp, Clock, FlipHorizontal, Hash, ListTree, TextSearch, X } from 'lucide-react'
 import { getSiblings, materialStats } from '../lib/content.js'
 import { extractToc } from '../lib/markdown.js'
 import { escapeRegExp } from '../lib/search.js'
-import { materialHref, subjectHref } from '../lib/router.js'
+import { cardsHref, materialHref, subjectHref } from '../lib/router.js'
 import Markdown from './Markdown.jsx'
 import Toc from './Toc.jsx'
 import TypeBadge from './TypeBadge.jsx'
@@ -172,6 +172,15 @@ export default function MaterialView({ material, initialQuery }) {
             {stats.minutes} мин чтения
           </span>
         </div>
+        {material.cardsCount > 0 && (
+          <div className="material-actions">
+            <a className="action-button" href={cardsHref(material.id)}>
+              <FlipHorizontal size={15} aria-hidden="true" />
+              Проверить знания
+              <span className="action-button-count">{material.cardsCount}</span>
+            </a>
+          </div>
+        )}
       </header>
 
       <div className="material-toolbar">

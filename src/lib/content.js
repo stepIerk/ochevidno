@@ -1,4 +1,5 @@
 import manifest from '../../content/manifest.json'
+import { parseCards } from './cards.js'
 import { toPlainText } from './markdown.js'
 
 const modules = import.meta.glob('/content/**/*.md', {
@@ -34,9 +35,12 @@ function loadRaw(file) {
 export const subjects = (manifest.subjects ?? []).map((subject, subjectIndex) => {
   const materials = (subject.materials ?? []).map((material, index) => {
     const raw = loadRaw(material.file)
+    const cards = parseCards(loadRaw(material.cards))
     return {
       ...material,
       raw,
+      cards,
+      cardsCount: cards.length,
       available: raw != null,
       index,
       subjectId: subject.id,

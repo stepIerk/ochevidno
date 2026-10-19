@@ -7,6 +7,7 @@ import { getMaterial, getSubject, site } from './lib/content.js'
 import { useRoute } from './lib/router.js'
 
 const MaterialView = lazy(() => import('./components/MaterialView.jsx'))
+const CardsPage = lazy(() => import('./components/CardsPage.jsx'))
 
 function NotFound({ message }) {
   return (
@@ -44,6 +45,9 @@ export default function App() {
     if (route.name === 'material') {
       const material = getMaterial(route.id)
       document.title = material ? `${material.title} — ${site.title}` : site.title
+    } else if (route.name === 'cards') {
+      const material = getMaterial(route.id)
+      document.title = material ? `Проверка знаний — ${material.title} — ${site.title}` : site.title
     } else if (route.name === 'subject') {
       const subject = getSubject(route.id)
       document.title = subject ? `${subject.name} — ${site.title}` : site.title
@@ -72,6 +76,15 @@ export default function App() {
   } else if (route.name === 'subject') {
     const subject = getSubject(route.id)
     page = subject ? <SubjectPage subject={subject} /> : <NotFound message="Предмет не найден" />
+  } else if (route.name === 'cards') {
+    const material = getMaterial(route.id)
+    page = material ? (
+      <Suspense fallback={<p className="empty">Загрузка карточек…</p>}>
+        <CardsPage material={material} />
+      </Suspense>
+    ) : (
+      <NotFound message="Материал не найден" />
+    )
   } else {
     page = <NotFound message="Страница не найдена" />
   }

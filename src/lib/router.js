@@ -11,6 +11,7 @@ function parseHash() {
   if (!segments.length) return { name: 'home', id: null, query }
   if (segments[0] === 'm' && segments[1]) return { name: 'material', id: segments[1], query }
   if (segments[0] === 's' && segments[1]) return { name: 'subject', id: segments[1], query }
+  if (segments[0] === 'cards' && segments[1]) return { name: 'cards', id: segments[1], query }
   return { name: 'notfound', id: null, query }
 }
 
@@ -37,4 +38,8 @@ export function materialHref(id, query) {
 
 export function subjectHref(id) {
   return `#/s/${encodeURIComponent(id)}`
+}
+
+export function cardsHref(id) {
+  return `#/cards/${encodeURIComponent(id)}`
 }

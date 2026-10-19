@@ -42,6 +42,10 @@ export default function Home() {
     <div className="home">
       <span className="home-theta" aria-hidden="true">Θ</span>
       <section className="hero">
+        <p className="hero-badge">
+          <span className="hero-badge-version">v1.1</span>
+          <span>Карточки для повторения материала</span>
+        </p>
         <h1>{site.title}</h1>
         {site.subtitle && <p className="hero-subtitle">{site.subtitle}</p>}
         <p className="hero-stats">
