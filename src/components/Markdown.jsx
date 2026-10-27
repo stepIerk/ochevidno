@@ -6,6 +6,8 @@ import rehypeSlug from 'rehype-slug'
 import remarkGfm from 'remark-gfm'
 import remarkMath from 'remark-math'
 import 'katex/dist/katex.min.css'
+import { useCodeSettings } from '../lib/codeSettings.js'
+import { codeLanguageLabel, highlightCode } from '../lib/highlight.js'
 import { normalizeMathDelimiters } from '../lib/markdown.js'
 
 const remarkPlugins = [remarkGfm, remarkMath]
@@ -54,10 +56,52 @@ function MarkdownTable({ children }) {
   )
 }
 
+function codeText(value) {
+  if (Array.isArray(value)) return value.join('')
+  if (typeof value === 'string') return value
+  return String(value ?? '')
+}
+
+function MarkdownPre({ children }) {
+  const [settings] = useCodeSettings()
+  const { highlight, autoDetect, theme } = settings
+  const list = Array.isArray(children) ? children : [children]
+  const element = list.find((child) => child && typeof child === 'object' && child.props)
+  const className = element?.props?.className ?? ''
+  const text = codeText(element?.props?.children ?? children).replace(/\n$/, '')
+  const language = /language-([^\s]+)/.exec(className)?.[1] ?? ''
+  const result = useMemo(
+    () => highlightCode(text, language, { highlight, autoDetect }),
+    [text, language, highlight, autoDetect],
+  )
+  const codeProps = result.html
+    ? { dangerouslySetInnerHTML: { __html: result.html } }
+    : { children: text }
+
+  return (
+    <div
+      className="code-block"
+      data-code-theme={theme === 'auto' ? undefined : theme}
+    >
+      <div className="code-block-head">
+        <span className="code-block-lang">{codeLanguageLabel(result.language || language)}</span>
+        {result.auto && <span className="code-block-auto">авто</span>}
+      </div>
+      <pre>
+        <code
+          className={`hljs${result.language ? ` language-${result.language}` : ''}`}
+          {...codeProps}
+        />
+      </pre>
+    </div>
+  )
+}
+
 const components = {
   a: MarkdownLink,
   img: MarkdownImage,
   table: MarkdownTable,
+  pre: MarkdownPre,
 }
 
 const Markdown = memo(function Markdown({ source }) {

@@ -34,6 +34,19 @@
           "file": "algos/kolok1.md"
         }
       ]
+    },
+    {
+      "id": "linal",
+      "name": "Алгебра и геометрия",
+      "description": "Коллоквиум 1 семестр",
+      "materials": [
+        {
+          "id": "linal-kolloquium-1",
+          "title": "Коллоквиум 1 семестр",
+          "type": "colloquium",
+          "file": "linal/kolok1.md"
+        }
+      ]
     }
     
   ]
