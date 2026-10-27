@@ -21,6 +21,19 @@
           "cards": "matan/kolok1.cards.md"
         }
       ]
+    },
+    {
+      "id": "algos",
+      "name": "Алгоритмы и алгоритмические языки",
+      "description": "Коллоквиум 1 семестр",
+      "materials": [
+        {
+          "id": "algos-kolloquium-1",
+          "title": "Коллоквиум 1 семестр",
+          "type": "colloquium",
+          "file": "algos/kolok1.md"
+        }
+      ]
     }
     
   ]
