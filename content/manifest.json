@@ -45,6 +45,12 @@
           "title": "Коллоквиум 1 семестр",
           "type": "colloquium",
           "file": "linal/kolok1.md"
+        },
+        {
+          "id": "linal-kolloquium-1-bilets",
+          "title": "Разбор билетов Коллоквиум 1",
+          "type": "colloquium",
+          "file": "linal/bilet-kolok-1.md"
         }
       ]
     }
