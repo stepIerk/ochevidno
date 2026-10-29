@@ -8,13 +8,15 @@
     }
   </style>
   <rect class="bg" width="64" height="64" rx="14" />
-  <text
-    class="fg"
-    x="32"
-    y="47"
-    font-family="Georgia, 'Times New Roman', serif"
-    font-size="42"
-    font-weight="600"
-    text-anchor="middle"
-  >Θ</text>
+  <g transform="rotate(-8 32 32)">
+    <text
+      class="fg"
+      x="32"
+      y="64"
+      font-family="Georgia, 'Times New Roman', serif"
+      font-size="84"
+      font-weight="600"
+      text-anchor="middle"
+    >Θ</text>
+  </g>
 </svg>

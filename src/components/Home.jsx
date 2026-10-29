@@ -44,7 +44,7 @@ export default function Home() {
       <section className="hero">
         <p className="hero-badge">
           <span className="hero-badge-version">v1.1</span>
-          <span>Карточки для повторения материала</span>
+          <span>Кр линал и иконка для выноса как приложение на iOS</span>
         </p>
         <h1>{site.title}</h1>
         {site.subtitle && <p className="hero-subtitle">{site.subtitle}</p>}

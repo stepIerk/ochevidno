@@ -5,6 +5,7 @@
     "colloquium": "Коллоквиум",
     "exam": "Экзаменационные вопросы",
     "lectures": "Разбор лекций",
+    "kr": "Контрольная работа",
     "other": "Прочее"
   },
   "subjects": [
@@ -51,6 +52,12 @@
           "title": "Разбор билетов Коллоквиум 1",
           "type": "colloquium",
           "file": "linal/bilet-kolok-1.md"
+        },
+        {
+          "id": "linal-kontrolnaya-rabota-1",
+          "title": "Контрольная работа 1",
+          "type": "kr",
+          "file": "linal/kr1.md"
         }
       ]
     }

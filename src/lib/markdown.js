@@ -4,14 +4,30 @@ const DISPLAY_MATH = /\\\[([\s\S]*?)\\\]/g
 const INLINE_MATH = /\\\(([\s\S]*?)\\\)/g
 const CODE_FENCE = /^\s{0,3}(```+|~~~+)/
 const INLINE_CODE = /`[^`\n]*`/g
+const CONTAINER_PREFIX = /^[ \t>]*$/
 
 function escapeDollars(text) {
   return text.replace(/\$/g, '\\$')
 }
 
-function toDisplayMath(match, inner) {
-  const body = escapeDollars(inner.trim())
-  return body ? `\n\n$$\n${body}\n$$\n\n` : match
+function containerPrefixAt(text, offset) {
+  const lineStart = text.lastIndexOf('\n', offset - 1) + 1
+  return /^[ \t>]*/.exec(text.slice(lineStart, offset))[0]
+}
+
+function stripClosingPrefix(inner) {
+  const lastNewline = inner.lastIndexOf('\n')
+  if (lastNewline === -1) return inner
+  return CONTAINER_PREFIX.test(inner.slice(lastNewline + 1)) ? inner.slice(0, lastNewline) : inner
+}
+
+function toDisplayMath(match, inner, offset, whole) {
+  const prefix = containerPrefixAt(whole, offset)
+  const lines = escapeDollars(stripClosingPrefix(inner).trim()).split('\n')
+  const body = lines
+    .map((line) => (line.trim() && prefix && !line.startsWith(prefix) ? prefix + line : line))
+    .join('\n')
+  return body ? `\n\n${prefix}$$\n${body}\n${prefix}$$\n\n` : match
 }
 
 function toInlineMath(match, inner) {
